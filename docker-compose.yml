@@ -3,13 +3,18 @@ elasticsearch:
   ports:
     - "9200:9200"
 logstash:
-  image: deviantony/elk-logstash
+  image: logstash
   volumes:
-    - logstash-conf:/etc/logstash/conf.d
+    - logstash-conf:/config-dir
+    #- /etc/nginx/ssl/certs/iplantcollaborative.org.chained.crt:/etc/ssl/iplant.crt
+    #- iplantcollaborative.key:/etc/ssl/iplant.key
   ports:
     - "5000:5000"  
   links:
     - elasticsearch
+  volumes_from: 
+    - iplant_data
+  command: logstash -f /config-dir/logstash.conf
 kibana3:
   image: deviantony/elk-kibana:kibana3
   ports:
