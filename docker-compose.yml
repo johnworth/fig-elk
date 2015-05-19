@@ -15,12 +15,12 @@ logstash:
   volumes_from: 
     - iplant_data
   command: logstash -f /config-dir/logstash.conf
-kibana3:
-  image: deviantony/elk-kibana:kibana3
-  ports:
-    - "8080:80"
-  links:
-    - elasticsearch
+#kibana3:
+#  image: deviantony/elk-kibana:kibana3
+#  ports:
+#    - "8080:80"
+#  links:
+#    - elasticsearch
 kibana4:
   image: deviantony/elk-kibana
   ports:
